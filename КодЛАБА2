@@ -1,0 +1,246 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Text;
+
+namespace Rextester
+{
+    public class Program
+    {
+        public static void Main(string[] args) //Метод, который называется main
+        { //Типы
+          //1a
+          int a = 32;
+          long h = 17929;  
+          float f = 1.26f;
+          char b = 'K';
+          string c = "Karry";
+          double d = 9.85;
+          short e = 85;
+          uint g = 123456;//Диапазон (бит) от 0 до 4 294 967 295 
+          //1b
+          //неявные приведения
+          long biga = a;
+          int   j = e;   
+          long  k = e;    
+          float l = g;    
+          double m = f;   
+          //явные приведения
+           double x = 1234.7;
+           int n;
+           // Преобразование double в int
+           n = (int)x;
+           System.Console.WriteLine(n);
+           uint o;
+           // Преобразование short в uint
+           o = (uint)e;
+           System.Console.WriteLine(o);
+           short p;
+           //Преобрвзование int в short
+           p = (short)a;
+           System.Console.WriteLine(p);
+           short r;
+           //Преобразование char в short
+           r = (short)b;
+           System.Console.WriteLine(r);
+           float s=15.8f;
+           int q;
+           //Преобразование float в int
+           q = (int)s;
+           System.Console.WriteLine(q);
+           //1c
+           object obj=a;//операция "а" упаковки, целочисленной переменной, которая присвоена объекту obj
+           System.Console.WriteLine(obj);
+           obj=32;
+           a=(int)obj;//распаковка
+           System.Console.WriteLine(a);
+           //1d
+           var num=25;
+           var  num_1=30;
+           System.Console.WriteLine(num+num_1);
+           //1e
+           int? a1 = 10;
+           int? b1 = null;
+           a1 = a1 * 10; 
+           System.Console.WriteLine(a1);
+           //Строки
+           //2a
+           string st="abc";
+           string st1="def";
+           System.Console.WriteLine(String.Compare(st, st1));//вывело -1 следовательно первая строка меньше второй
+           //2b
+           string str="Object - oriented programming.";
+           string str1="Laboratory work N2. ";
+           string str2="Task 2, working with strings.";
+           System.Console.WriteLine(str+str1+str2);//сцепление или конкантенация
+           System.Console.WriteLine(str.Length);
+           string str0=str.Substring(0, 28);//копирование строки
+           System.Console.WriteLine(str0);  //
+           string str01=str.Substring(0, 6);//выделение подстроки 
+           System.Console.WriteLine(str01);
+           string[] podstr=str.Split(' ');//разбиение строки на подстроки
+           System.Console.WriteLine(podstr[3]);
+           System.Console.WriteLine(str1.Insert(20, podstr[3]));//вставка подстроки в определенное место строки
+           System.Console.WriteLine(str2.Remove(15));//удаление заданной подстроки
+           //2с
+           string s1=null;
+           string s2=String.Empty;
+           string s3="hello";
+           string s3s1=s3+s1;
+           System.Console.WriteLine(s3s1);
+           System.Console.WriteLine(s2+s1);
+           System.Console.WriteLine(s2.Length);
+          System.Console.WriteLine(String.Compare(s2, s1));//первая строка больше второй
+          //2d
+          StringBuilder sb = new StringBuilder("Rise up and sunshine !");
+          System.Console.WriteLine(sb);
+          Console.WriteLine( sb.Length);
+          sb.Remove(7, 13);//удаление части строки с заданной позицией
+          Console.WriteLine(sb);//длин стр
+          StringBuilder sb1 = new StringBuilder("Rise up and sunshine!");
+          sb1.Append("=D");//добавление в конец строки
+          sb1.Insert(0, " Hey, you! ");//Добавление в начало строки
+          System.Console.WriteLine(sb1);
+          //массивы
+          //3a
+          int[,] myArr = new int[3, 4];//обхявление двумерного массива
+          Random ran = new Random();
+         // инициализация данного массива
+          for (int i1 = 0; i1 < 3; i1++)
+        {
+           for (int j1 = 0; j1 < 4; j1++)
+        {
+            myArr[i1, j1] = ran.Next(1, 20);//матрица заполняется произвольными числами от 1 до 20
+          Console.Write("{0}\t", myArr[i1, j1]);
+        }
+          Console.WriteLine();
+        }
+          //3b
+          string[] weekDays = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };//создание одномерного массива строки
+          System.Console.WriteLine(weekDays.Length);//вывод длинны массива
+           for (int i2=0; i2<7; i2++)//вывод содержимого массива
+           {
+            System.Console.WriteLine(weekDays[i2]+","); 
+           }
+           string[] weekDays1 = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
+           int position;
+           string value;
+           System.Console.WriteLine("Enter a position: ");
+           position=Convert.ToInt32(System.Console.ReadLine());
+           System.Console.WriteLine("Enter a value: ");
+           value=System.Console.ReadLine();
+           weekDays1[position]=value;//замена заданной подстроки
+            for (int i2=0; i2<7; i2++)//вывод содержимого массива
+           {
+            System.Console.WriteLine(weekDays[i2]+","); 
+           }
+} 
+} 
+}
+
+           
+          
+////////////////////////////////////////////////////////
+//3c
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks; 
+
+namespace ConsoleApplication1 
+{ 
+class Program 
+{ 
+ static void Main(string[] args)
+{ 
+int i = 0; 
+// Объявляем ступенчатый массив 
+float[][] myArr = new float[3][]; 
+myArr[0] = new float[2]; 
+myArr[1] = new float[3]; 
+myArr[2] = new float[4]; 
+
+
+// Инициализируем ступенчатый массив 
+for (; i < 2; i++) 
+{ 
+System.Console.WriteLine("Enter a[i]"); 
+myArr[0][i]=Convert.ToInt32(System.Console.ReadLine()); 
+} 
+
+
+Console.WriteLine(); 
+for (i = 0; i < 3; i++) 
+{ 
+System.Console.WriteLine("Enter a[i]"); 
+myArr[1][i]=Convert.ToInt32(System.Console.ReadLine()); 
+} 
+
+
+Console.WriteLine(); 
+for (i = 0; i < 4; i++) 
+{ 
+System.Console.WriteLine("Enter a[i]"); 
+myArr[2][i]=Convert.ToInt32(System.Console.ReadLine()); 
+} 
+for (i=0; i < 2; i++) 
+{ 
+
+Console.Write("{0}\t",myArr[0][i]); 
+} 
+System.Console.WriteLine("\t");
+for (i = 0; i < 3; i++) 
+{ 
+
+Console.Write("{0}\t", myArr[1][i]); 
+} 
+System.Console.WriteLine("\t");
+for (i = 0; i < 4; i++) 
+{ 
+Console.Write("{0}\t", myArr[2][i]); 
+} 
+Console.ReadLine(); 
+//3d
+var d = new[] {2, 4, 6, 8, 10, 12};
+var dc="123";
+//4a
+var myK= new Tuple <int, string, char, string, ulong>(4, "String", 'X', "String2", 12345678);
+var myK1= new Tuple <int, string, char, string>(4, "String", 'X', "String2");
+//4b именование
+var g1=4;
+var g2="String"; 
+var g3='X' ;
+var g4="String2";
+var g5=12345678;
+//4c
+System.Console.WriteLine(myK.Item1+" "+myK.Item2+" "+myK.Item3+" "+myK.Item4+" "+myK.Item5);
+System.Console.WriteLine(myK.Item1+" "+myK.Item3+" "+myK.Item4);
+//4e
+System.Console.WriteLine(myK.Equals(myK1));//Если False, значит кортежи не равны
+
+
+
+ void main()
+            {
+                var mym = new[] { 1, 2, 3, 4, 5 };
+                string stok = "1234";
+                int max=0;
+                int min = 10;
+                int sum = 0;
+                for (int i =0; i<5;i++)
+                {
+                    if (mym[i] > max) max = mym[i];
+                    if (mym[i] < min) min = mym[i];
+                    sum += mym[i];
+                }
+                string pstok = stok.Substring(0,1);
+                var cort =new Tuple<int,int,int, string>(max, min ,sum, pstok);
+                Console.WriteLine(cort.Item1 + " " + cort.Item2 + " " + cort.Item3 + " " + cort.Item4);
+            }
+
+               main();
+} 
+} 
+}
