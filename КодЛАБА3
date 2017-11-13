@@ -1,0 +1,125 @@
+//Создать класс -Одномерный массивцелых чисел (вектор). 
+//Создать индексатор,методыпоэлементного сложения и вычитания со скалярным значением.
+//Создать массив объектов. Вывести:a) массивы только с четными/нечетными элементами;
+//b) массив с наибольшей суммой элементов.
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+partial class MyArray
+{
+    public int[] Array = new int[5];
+    public readonly int q=25;
+    public const int w = 7;
+    public void Vivod()
+    {
+        Console.WriteLine("*****");
+        for (int i = 0; i < 5; i++)
+        {
+            Console.WriteLine(Array[i]);
+        }
+    }
+    public MyArray( int a, int b, int c, int d, int e)//конструктор с параметрами
+    {
+        Array[0] = a;
+        Array[1] = b;
+        Array[2] = c;
+        Array[3] = d;
+        Array[4] = e;
+
+    }
+    static MyArray()
+    {
+        Console.WriteLine("Статический конструктор. ");
+    }
+    private MyArray() { }//закрытый конструктор
+
+    public void Sum(MyArray Sum, MyArray Sum1)
+    {
+        Console.WriteLine("Сумма массивов: ");
+        for (int i = 0; i < 5; i++)
+        {
+            int s = 0;
+            s =Sum.Array[i]+Sum1.Array[i];
+            Console.WriteLine(s);
+        }
+        Console.WriteLine("Разность массивов: ");
+        for (int i = 0; i < 5; i++)
+        {
+            int m = 0;
+            m = Sum1.Array[i] - Sum.Array[i];
+            Console.WriteLine(m);
+        }
+        
+    }
+    public int R//свойство с ограничением по set
+    {
+     get
+        {
+            return q;
+        }
+                
+    }
+    public int T
+    {
+        get
+        {
+            return q;
+        }
+        set
+        {
+            Array[1] = value;
+        }
+
+    }
+    public void Chot (MyArray[] Chot)
+    {  
+        for (int i=0; i<2; i++)
+        {
+            int a = 0;
+            for (int j = 0; j < 5; j++)
+            {
+               if (Chot[i].Array[j] % 2 == 0) a = a+1;
+            }
+            if (a == 5)
+            {
+                Console.WriteLine("Четно");
+                Chot[i].Vivod();
+            }
+        } 
+    }
+    public void BolSum(MyArray[] BolSum)
+    {       int s1 = 0;
+            int s2 = 0;
+            for (int j = 0; j < 5; j++)
+            {
+                s1 = s1 + BolSum[0].Array[j];   
+            }
+            for (int j = 0; j < 5; j++)
+            {
+                s2 = s2 + BolSum[1].Array[j];   
+            }
+        //   Console.WriteLine("Сумма элементов первого массива =: "+s1);
+        //   Console.WriteLine("Сумма элементов второго массива =: "+s2);
+        if (s1.Equals(s2) == true) Console.WriteLine("Суммы элементов массива равны. ");
+        else Console.WriteLine("Суммы элементов массива не равны.");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        MyArray sampleClass1 = new MyArray(2,4,6,10,8);  // Создание экземпляра класса
+        MyArray sampleClass2 = new MyArray(5,6,7,8,9);
+        sampleClass1.Vivod();                 // Вызов метода
+        sampleClass2.Vivod();
+        sampleClass1.Sum(sampleClass1,sampleClass2);
+        MyArray[] Mas = new MyArray[2];
+        Mas[0] = sampleClass1;
+        Mas[1] = sampleClass2;
+        sampleClass1.Chot(Mas);
+        sampleClass1.BolSum(Mas);
+    }
+}
