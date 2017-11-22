@@ -1,0 +1,154 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp4
+{//Класс список List.Дополнительно перегрузить следующие операции: + - добавить элемент в конец (list+item);
+ //--  удалить элемент из конца(типа list-);
+ //!=  проверка на неравенство; true – проверка упорядоченности элементов.Методы расширения: 
+ //1) Подсчет количества слов.  2) Проверка на нулевые элементы вписке
+    class List
+    {
+        public string slovo;
+        static int z;
+        // static string[] A;
+
+
+        public List(string sl, string[] A) // конструктор
+        {
+            slovo = sl;
+            z++;
+            A[z] = sl;
+        }
+
+        public static List operator +(List obj1, string[] A)//добавление эл-та в конец
+        {
+            A[z] = obj1.slovo;
+            z++;
+            for (int i = 0; i < z + 1; i++) { Console.WriteLine(A[i]); }
+            Console.ReadLine();
+            return obj1;
+        }
+
+        public static List operator -(List obj1, string[] A)//удаление эл-та с конца (бинарная перегрузка метода)
+        {
+            z--;
+            for (int i = 0; i < z; i++) { Console.WriteLine(A[i]); }
+            Console.ReadLine();
+            return obj1;
+        }
+        public static List operator ==(List obj1, List obj2)
+        {
+
+            return obj1;
+        }
+
+        public static List operator !=(List obj1, List obj2)//проверка на неравенство
+        {
+            bool c;
+            c = (obj1.slovo == obj2.slovo);
+            if (c == true) Console.WriteLine(obj1.slovo + " и " + obj2.slovo + " равны"); else Console.WriteLine(obj1.slovo + " и " + obj2.slovo + " не равны");
+            Console.ReadLine();
+            return obj1;
+        }
+
+        public void reWrite(List obj1, string[] A)
+        {
+            for (int i = 0; i < z + 1; i++) { Console.WriteLine(A[i]); }
+            Console.ReadLine();
+        }
+
+
+
+
+        public class Owner//наш вложенный объект
+        {
+            int id;
+            string name;
+            string organ;
+            public Owner(string a, string b)
+            {
+                this.id = z;
+                this.name = a;
+                this.organ = b;
+                Console.WriteLine(this.id + "  " + this.name + " " + this.organ);
+            }
+        }
+        public class Data//наш вложенный класс 
+        {
+            double data;
+            public Data(double a)
+            {
+                this.data = a;
+                Console.WriteLine("Дата: " + this.data);
+            }
+        }
+
+
+    }
+    static class MathObject
+    {
+        public static bool Pusto(this string str, string[] A)
+        {
+            int z = 10;
+            bool c = false;
+            for (int i = 0; i < z + 1; i++) { if (A[i] == " ") Console.WriteLine("Есть пустые строки."); c = true; }
+            return c;
+        }
+        public static void max(this string str, string a, string b)
+        {
+            if (a.Length > b.Length) Console.Write("Длиннее " + a); else Console.Write("Длиннее" + " " + b);
+            Console.ReadLine();
+        }
+        public static void min(this string str, string a, string b)
+        {
+            if (a.Length > b.Length) Console.Write("Меньше " + " " + b); else Console.Write("Меньше" + " " + a);
+            Console.ReadLine();
+        }
+
+        public static void rav(this string str, string a, string b)
+        {
+            if (a.Length == b.Length) Console.Write("Слова " + a + " и " + b + " равной длинны");
+            else Console.Write("Слова " + a + " и " + b + " не равной длинны ");
+            Console.ReadLine();
+        }
+        public static void del(this string str, string[] A)
+        {
+            int z = 10;
+            int c = 0;
+            for (int i = 0; i < z + 1; i++) { if (A[i] != null) c++; }
+            Console.WriteLine("Количество элементов " + c);
+        }
+    }
+
+
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int n = 50;
+            bool c;
+            string[] A = new string[n];
+            List ras = new List("Odin", A);
+            List dva = new List("Dva", A);
+            dva.reWrite(dva, A);
+            List tri = new List("Konech", A);
+            List four = tri + A;
+            four = tri - A;
+            four = dva != tri;
+            four = tri != tri;
+            List.Owner aaa = new List.Owner("Имя", "Организация");
+            List.Data bbb = new List.Data(25.11);
+            List noll = new List(" ", A);
+            c = ras.slovo.Pusto(A);
+            ras.slovo.max(ras.slovo, tri.slovo);
+            ras.slovo.min(ras.slovo, tri.slovo);
+            ras.slovo.rav(ras.slovo, tri.slovo);
+            ras.slovo.del(A);
+        }
+    }
+}
